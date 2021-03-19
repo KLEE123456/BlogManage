@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.klee.mapper.BlogTypeMapper">
+   <select id="getBlogType" resultType="BlogType" >
+       select  * from  t_btype
+   </select>
+    <select id="checkBlogType" resultType="BlogType" parameterType="string">
+        select * from t_btype where  bTypeName=#{blType}
+    </select>
+    <insert id="addBlogType" parameterType="BlogType">
+        insert  into t_btype value (default ,#{bTypeName})
+    </insert>
+    <delete id="deleteBlogType" parameterType="int">
+        delete  from  t_btype where bTypeId=#{blogTypeId}
+    </delete>
+    <select id="findBTypeById" parameterType="int" resultType="BlogType">
+        select * from t_btype where bTypeId=#{blogTypeId};
+    </select>
+    <update id="updateBlogType">
+        update t_btype set bTypeName=#{name} where bTypeId=#{id}
+    </update>
+</mapper>
