@@ -5,6 +5,7 @@ import org.springframework.core.Ordered;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
 @Configuration
 public class MyMVCConfig implements WebMvcConfigurer {
     @Override
@@ -17,6 +18,7 @@ public class MyMVCConfig implements WebMvcConfigurer {
         registry.addViewController("/error.html").setViewName("error");
         registry.addViewController("/blogTypeAdd.html").setViewName("blogTypeAdd");
         registry.addViewController("/blogTypeUpdate.html").setViewName("blogTypeUpdate");
+        registry.addViewController("/blogTagAdd.html").setViewName("blogTagAdd");
         registry.setOrder(Ordered.HIGHEST_PRECEDENCE);
     }
 
@@ -24,6 +26,6 @@ public class MyMVCConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new LoginInterceptor())
                 .addPathPatterns("/**")
-                .excludePathPatterns("/","/login.html","/css/**","/fonts/**","/images/**","/js/**","/lib/**","/userLogin");
+                .excludePathPatterns("/", "/login.html", "/css/**", "/fonts/**", "/images/**", "/js/**", "/lib/**", "/userLogin");
     }
 }

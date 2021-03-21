@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.klee.mapper.BlogTagMapper">
+    <select id="getAllBlogTag" resultType="BlogTag">
+        select  * from  t_btag
+    </select>
+    <select id="getBlogTagByName" resultType="BlogTag" parameterType="string">
+        select  * from  t_btag where bTagName=#{bTagName}
+    </select>
+    <insert id="addBlogTag" parameterType="BlogTag">
+        insert into t_btag values (default ,#{bTagName})
+    </insert>
+    <delete id="deleteBlogTag" parameterType="int">
+        delete  from  t_btag where bTagId=#{blogTagId}
+    </delete>
+    <select id="findBlogTagById" parameterType="int" resultType="BlogTag">
+        select * from t_btag where bTagId=#{bTagId};
+    </select>
+    <update id="updateBlogTag" parameterType="BlogTag">
+        update t_btag set bTagName=#{bTagName} where bTagId=#{bTagId}
+    </update>
+</mapper>

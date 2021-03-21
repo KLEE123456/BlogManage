@@ -14,7 +14,7 @@
     <script type="text/javascript" th:src="@{/js/xadmin.js}"></script>
     <script th:src="@{https://cdn.staticfile.org/html5shiv/r29/html5.min.js}"></script>
     <script th:src="@{https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js}"></script>
-    <script th:src="@{/js/myJS/blogTypes.js}"></script>
+    <script th:src="@{/js/myJS/blogTag.js}"></script>
 </head>
 
 <body>
@@ -22,14 +22,14 @@
     <div class="layui-row">
         <div class="layui-form-item">
             <label for="username" class="layui-form-label">
-                <span class="x-red">*</span>博客类别</label>
+                <span class="x-red">*</span>博客标签</label>
             <div class="layui-input-inline">
-                <input type="text" th:value="${blogType.bTypeName}" id="blogTypeName" name="blogTypeName"  class="layui-input">
+                <input type="text" th:value="${blogTag.bTagName}" id="blogTagName" name="blogTagName"  class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
             <label for="L_repass" class="layui-form-label"></label>
-            <button class="layui-btn" id="updateBtn" th:onclick="'javascript:updateBType('+${blogType.bTypeId}+')'">修改</button>
+            <button class="layui-btn" id="updateBtn" th:onclick="'javascript:updateBTag('+${blogTag.bTagId}+')'">修改</button>
         </div>
     </div>
 </div>

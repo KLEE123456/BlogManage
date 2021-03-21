@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -44,37 +44,55 @@ public class BlogTypeController {
         BlogType blogType1=blogTypeService.checkBlogType(blogType);
         PrintWriter out=response.getWriter();
         if (blogType1==null){
-            out.print(1);
+            out.print(1);//非重复返回1
         }
         else {
-            out.print(0);
+            out.print(0);//重复返回0
         }
     }
 
+    /**
+     * 添加博客类别
+     * @param blogType
+     * @param response
+     * @throws IOException
+     */
     @RequestMapping("/addBlogType")
     public void addBType(BlogType blogType,HttpServletResponse response) throws IOException {
         int rows=blogTypeService.addBlogType(blogType);
         PrintWriter out=response.getWriter();
         if (rows>0){
-            out.print(1);
+            out.print(1);//添加成功返回1
         }
         else {
-            out.print(0);
+            out.print(0);//修改失败返回0
         }
     }
 
+    /**
+     * 删除博客类别
+     * @param bTypeId
+     * @param response
+     * @throws IOException
+     */
     @RequestMapping("/delBlogType")
     public void  deleteBType(int bTypeId,HttpServletResponse response) throws IOException {
         int rows=blogTypeService.deleteBlogType(bTypeId);
         PrintWriter out=response.getWriter();
         if (rows>0){
-            out.print(1);
+            out.print(1);//删除成功返回1
         }
         else {
-            out.print(0);
+            out.print(0);//修改失败返回0
         }
     }
 
+    /**
+     * 编辑回填
+     * @param bTypeId
+     * @param model
+     * @return
+     */
     @RequestMapping("/findBlogTypeById")
     public String findBTypeById(int bTypeId,Model model){
         BlogType blogType=blogTypeService.findBTypeById(bTypeId);
@@ -82,15 +100,22 @@ public class BlogTypeController {
         return "blogTypeUpdate";
     }
 
+    /**
+     * 编辑博客类别
+     * @param bTypeId
+     * @param bTypeName
+     * @param response
+     * @throws IOException
+     */
     @RequestMapping("/updateBlogType")
     public void  updateBType(int bTypeId,String bTypeName,HttpServletResponse response) throws IOException {
         int rows=blogTypeService.updateBType(bTypeId,bTypeName);
         PrintWriter out=response.getWriter();
         if (rows>0){
-            out.print(1);
+            out.print(1);//修改成功返回1
         }
         else {
-            out.print(0);
+            out.print(0);//修改失败返回0
         }
     }
 }

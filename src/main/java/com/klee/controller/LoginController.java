@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 @Controller
@@ -26,5 +27,17 @@ public class LoginController {
         }
         session.setAttribute("loginUser",user);
         return "redirect:index.html";
+    }
+
+    /**
+     * 注销
+     * @param request
+     * @return
+     */
+    @RequestMapping("/userExit")
+    public String destorySession(HttpServletRequest request){
+        HttpSession session=request.getSession();
+        session.invalidate();
+        return "redirect:login.html";
     }
 }
