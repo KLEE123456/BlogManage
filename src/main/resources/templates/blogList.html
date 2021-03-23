@@ -37,7 +37,7 @@
                                 <div class="layui-input-inline layui-show-xs-block">
                                     <select name="contrller" id="blTypeSelect">
                                         <option value="">博客类别</option>
-                                        <option th:each="blogType:${blogTypeList}" th:value="${blogType.bTypeName}">[[${blogType.bTypeName}]]</option>
+                                        <option th:each="blogType:${blogTypeList}" th:value="${blogType.bTypeName}" th:selected="${blogType.bTypeName eq HtBType}">[[${blogType.bTypeName}]]</option>
                                     </select>
                                 </div>
                                 <div class="layui-input-inline layui-show-xs-block">
