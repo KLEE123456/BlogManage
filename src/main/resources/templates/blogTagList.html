@@ -217,12 +217,14 @@
                 <div class="layui-card-body ">
                     <div class="page">
                         <div>
-                            <a class="prev" href="">&lt;&lt;</a>
-                            <a class="num" href="">1</a>
-                            <span class="current">2</span>
-                            <a class="num" href="">3</a>
-                            <a class="num" href="">489</a>
-                            <a class="next" href="">&gt;&gt;</a></div>
+                            <span>当前页是第[[${pageInfo.pageNum}]]页，总共[[${pageInfo.pages}]]页，总记录数[[${pageInfo.total}]]条</span>
+                        </div>
+                        <div>
+                            <a class="num" th:href="@{/getBlogTag(pageNum=1)}">首页</a>
+                            <a class="prev" th:href="@{/getBlogTag(pageNum=${pageInfo.prePage})}">上一页</a>
+                            <a class="next" th:href="@{/getBlogTag(pageNum=${pageInfo.nextPage})}">下一页</a>
+                            <a class="num" th:href="@{/getBlogTag(pageNum=${pageInfo.pages})}">尾页</a>
+                        </div>
                     </div>
                 </div>
             </div>

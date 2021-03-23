@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.klee.mapper.BlogMapper">
+    <resultMap id="blogMap" type="Blog">
+        <id property="blogId" column="blogId"></id>
+        <result property="blogTitle" column="blogTitle"></result>
+        <result property="blogComment" column="blogComment"></result>
+        <result property="blogPhoto" column="blogPhoto"></result>
+        <result property="blogFlag" column="blogFlag"></result>
+        <result property="blogView" column="blogView"></result>
+        <result property="appreciation" column="appreciation"></result>
+        <result property="shareStatement" column="shareStatement"></result>
+        <result property="commentabled" column="commentabled"></result>
+        <result property="published" column="published"></result>
+        <result property="recommend" column="recommend"></result>
+        <result property="createTime" column="createTime"></result>
+        <result property="updateTime" column="updateTime"></result>
+        <association property="blogType" javaType="BlogType">
+            <id property="bTypeId" column="bTypeId"></id>
+            <result property="bTypeName" column="bTypeName"></result>
+        </association>
+    </resultMap>
+    <select id="getBlog"  resultMap="blogMap" parameterType="map">
+            SELECT blg.blogTitle,btp.bTypeName,blg.recommend,blg.createTime,blg.updateTime FROM t_blog blg JOIN t_btype btp ON  blg.bTypeid=btp.bTypeId
+            <where>
+                <if test="blTitle!=null and blTitle!=''">
+                    and  blg.blogTitle=#{blTitle}
+                </if>
+                <if test="blType!=null and blType!=''">
+                    and  btp.bTypeName=#{blType}
+                </if>
+            </where>
+    </select>
+</mapper>

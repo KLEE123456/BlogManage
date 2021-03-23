@@ -18,7 +18,6 @@ public class LoginController {
     private LoginService loginService;
     @RequestMapping("/userLogin")
     public String loginCheck(Model model, @RequestParam(value = "username") String userName, @RequestParam(value = "password") String userPwd, HttpSession session){
-        System.out.println(userName+","+userPwd);
         userPwd=Md5Encrypt.MD5(userPwd);
         User user=loginService.loginService(userName,userPwd);
         if (user==null){

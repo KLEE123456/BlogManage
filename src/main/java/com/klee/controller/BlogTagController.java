@@ -1,11 +1,13 @@
 package com.klee.controller;
 
+import com.github.pagehelper.PageInfo;
 import com.klee.pojo.BlogTag;
 import com.klee.service.BlogTagService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -23,9 +25,11 @@ public class BlogTagController {
      * @return
      */
     @RequestMapping("/getBlogTag")
-    public String getAllBlogTag(Model model){
-        List<BlogTag> blogTagList=blogTagService.getAllBlogTag();
+    public String getAllBlogTag(Model model, @RequestParam(value = "pageNum",defaultValue = "1")int pageNum){
+        List<BlogTag> blogTagList=blogTagService.getAllBlogTag(pageNum);
+        PageInfo pageInfo=new PageInfo(blogTagList);
         model.addAttribute("blogTagList",blogTagList);
+        model.addAttribute("pageInfo",pageInfo);
         return "blogTagList";
     }
 

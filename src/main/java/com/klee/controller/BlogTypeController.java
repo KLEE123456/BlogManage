@@ -1,11 +1,15 @@
 package com.klee.controller;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.klee.pojo.BlogType;
 import com.klee.service.BlogTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 
 import javax.servlet.http.HttpServletResponse;
@@ -27,9 +31,12 @@ public class BlogTypeController {
      * @return
      */
     @RequestMapping("/getBlogType")
-    public String getBType(Model model){
-        List<BlogType> blogTypeList=blogTypeService.getBlogType();
+    public String getBType(Model model,@RequestParam(value = "pageNum",defaultValue = "1") int pageNum){
+        System.out.println(pageNum);
+        List<BlogType> blogTypeList=blogTypeService.getBlogType(pageNum);
+        PageInfo pageInfo=new PageInfo(blogTypeList);
         model.addAttribute("blogTypeList",blogTypeList);
+        model.addAttribute("pageInfo",pageInfo);
         return "blogTypeList";
     }
 

@@ -1,5 +1,6 @@
 package com.klee.service;
 
+import com.github.pagehelper.PageHelper;
 import com.klee.mapper.BlogTypeMapper;
 import com.klee.pojo.BlogType;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,8 +11,10 @@ import java.util.List;
 public class BlogTypeService {
     @Autowired
     private BlogTypeMapper blogTypeMapper;
-    public List<BlogType> getBlogType(){
-        return  blogTypeMapper.getBlogType();
+    public List<BlogType> getBlogType(int pageNum){
+        PageHelper.startPage(pageNum,5);
+        List<BlogType> blogTypeList=blogTypeMapper.getBlogType();
+        return  blogTypeList;
     }
     public  BlogType checkBlogType(String blType){
         return blogTypeMapper.checkBlogType(blType);
