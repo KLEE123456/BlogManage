@@ -26,7 +26,7 @@
             SELECT blg.blogTitle,btp.bTypeName,blg.recommend,blg.createTime,blg.updateTime FROM t_blog blg JOIN t_btype btp ON  blg.bTypeid=btp.bTypeId
             <where>
                 <if test="blTitle!=null and blTitle!=''">
-                    and  blg.blogTitle=#{blTitle}
+                    and  blg.blogTitle like  concat('%',#{blTitle},'%')
                 </if>
                 <if test="blType!=null and blType!=''">
                     and  btp.bTypeName=#{blType}

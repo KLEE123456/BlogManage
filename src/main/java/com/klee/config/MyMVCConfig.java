@@ -19,6 +19,7 @@ public class MyMVCConfig implements WebMvcConfigurer {
         registry.addViewController("/blogTypeAdd.html").setViewName("blogTypeAdd");
         registry.addViewController("/blogTypeUpdate.html").setViewName("blogTypeUpdate");
         registry.addViewController("/blogTagAdd.html").setViewName("blogTagAdd");
+        registry.addViewController("/blogAdd.html").setViewName("blogAdd");
         registry.setOrder(Ordered.HIGHEST_PRECEDENCE);
     }
 
